@@ -13,7 +13,8 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        return view('admin.pelanggan.index');
+        $pelanggan = Pelanggan::latest()->paginate();
+        return view('admin.pelanggan.index', compact('pelanggan'));
     }
 
     /**
@@ -47,15 +48,16 @@ class PelangganController extends Controller
      */
     public function edit(Pelanggan $pelanggan)
     {
-        //
+        return view('admin.pelanggan.edit', compact('pelanggan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pelanggan $pelanggan)
+    public function update(PelangganRequest $request, Pelanggan $pelanggan)
     {
-        //
+        $pelanggan->update($request->validated());
+        return redirect()->route('pelanggan.index');
     }
 
     /**
@@ -63,6 +65,7 @@ class PelangganController extends Controller
      */
     public function destroy(Pelanggan $pelanggan)
     {
-        //
+        $pelanggan->delete();
+        return redirect()->route('pelanggan.index');
     }
 }

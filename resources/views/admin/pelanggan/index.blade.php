@@ -26,31 +26,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach($barang as $key => $datas)
+                    @foreach($pelanggan as $key => $data)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $datas->nama }}</td>
-                            <td>{{ $datas->merek }}</td>
-                            <td>{{ $datas->kategori->nama ?? 'N/A' }}</td>
-                            <td>{{ $datas->jumlah_baik }}</td>
-                            <td>{{ $datas->jumlah_buruk }}</td>
-                            <td>{{ $datas->jumlah_baik + $datas->jumlah_buruk}}</td>
-                            <td>{{ $datas->lokasi->nama ?? 'N/A' }}</td>
-                            <td>
-                                {{-- <a href="{{ route('details.show', $datas->id) }}" class="btn btn-success btn-sm">Detail</a> --}}
+                            <td>{{ $data->nama }}</td>
+                            <td>{{ $data->alamat }}</td>
+                            <td>{{ $data->no_telp }}</td>
+                        <td>
                                 
                                 <!-- Edit Button -->
-                                {{-- <a href="{{ route('barang.edit', $datas->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                 <a href="{{ route('pelanggan.edit', $data->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
                                 <!-- Delete Button -->
-                                <form action="{{ route('barang.destroy', $datas->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('pelanggan.destroy', $data->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
                             </td>
                         </tr>
-                    @endforeach --}} 
+                    @endforeach 
                 </tbody>
             </table>
 

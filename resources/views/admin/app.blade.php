@@ -62,8 +62,8 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
-                      <div data-i18n="Sub Menu 2">Sub Menu 2</div>
+                    <a href="{{ route('produk.index') }}" class="menu-link">
+                      <div data-i18n="Sub Menu 2">Produk</div>
                     </a>
                   </li>
               </ul>
