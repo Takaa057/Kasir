@@ -11,23 +11,31 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <td>No</td>
-                            <td>Nama</td>
-                            <td>Harga</td>
-                            <td>Stok</td>
-                            <td>Action</td>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Harga</th>
+                            <th>Stok</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($produk as $key => $data)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $data->nama }}</td>
+                            <td>{{ $data->harga }}</td>
+                            <td>{{ $data->stok }}</td>
                             <td>
+                                <a href="{{ route('produk.edit', $data->id) }}" class="btn btn-secondary btn-sm">Edit</a>
 
+                                <form action="{{ route('produk.destroy', $data->id) }}" method="post" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

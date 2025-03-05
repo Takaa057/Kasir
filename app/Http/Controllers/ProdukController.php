@@ -13,7 +13,8 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        return view('admin.produk.index');
+        $produk = Produk::latest()->paginate();
+        return view('admin.produk.index', compact('produk'));
     }
 
     /**
@@ -27,18 +28,15 @@ class ProdukController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProdukRequest $request)
+    public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'nama' => 'required|string|max:255',
-        //     'harga' => 'required|decimal',
-        //     'stok' => 'required|integer'
-        // ]);
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'harga' => 'required|numeric',
+            'stok' => 'required|integer'
+        ]);
 
-        // Produk::create($validated);
-
-        $produk = new Produk();
-        $produk->create($request->validated());
+        Produk::create($validated);
         return redirect()->route('produk.index');
     }
 
@@ -55,7 +53,7 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
-        return view('admin.produk.edit');
+        return view('admin.produk.edit', compact('produk'));
     }
 
     /**
@@ -63,7 +61,14 @@ class ProdukController extends Controller
      */
     public function update(Request $request, Produk $produk)
     {
-        //
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'harga' => 'required|numeric',
+            'stok' => 'required|integer'
+        ]);
+
+        $produk->update($validated);
+        return redirect()->route('produk.index');
     }
 
     /**
@@ -71,6 +76,7 @@ class ProdukController extends Controller
      */
     public function destroy(Produk $produk)
     {
-        //
+        $produk->delete();
+        return redirect()->route('produk.index');
     }
 }

@@ -23,7 +23,7 @@ class ProdukRequest extends FormRequest
     {
         return [
             'nama' => 'required|string|max:255',
-            'harga' => 'required|decimal|pmax:99999999.99',
+            'harga' => 'required|decimal',
             'stok' => 'required|integer'
         ];
     }

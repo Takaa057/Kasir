@@ -10,9 +10,9 @@
             </a>
 
             <!-- Search Field -->
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search..." id="search">
-            </div>
+            </div> --}}
 
             <!-- lokasis Table -->
             <table class="table table-bordered table-hover">
