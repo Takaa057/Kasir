@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.blank.index');
-});
+// Route::get('/', function () {
+//     return view('admin.blank.index');
+// });
+
+Route::get('/', [AuthController::class, 'index']);
+Route::post('/', [AuthController::class, 'login']);
 
 Route::resource('pelanggan', PelangganController::class);
 
