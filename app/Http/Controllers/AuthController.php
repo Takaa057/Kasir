@@ -31,4 +31,9 @@ class AuthController extends Controller
             return redirect('')->withErrors('Username Dan Password Tidak Sesuai')->withInput(); 
         }
     }
+
+    function logout(){
+        Auth::logout();
+        return redirect('');
+    }
 }

@@ -20,8 +20,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin.blank.index');
 // });
 
-Route::get('/', [AuthController::class, 'index']);
-Route::post('/', [AuthController::class, 'login']);
+ROute::middleware(['guest'])->group(function(){
+    Route::get('/', [AuthController::class, 'index']);
+    Route::post('/', [AuthController::class, 'login']);
+});
+
+Route::get('/home', function(){
+    return redirect('/admin/blank/index');
+});
+
+Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::resource('pelanggan', PelangganController::class);
 
