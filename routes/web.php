@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +28,17 @@ ROute::middleware(['guest'])->group(function(){
 });
 
 Route::get('/home', function(){
-    return redirect('/admin/blank/index');
+    return redirect('/admin');
 });
 
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::middleware(['auth'])->group(function(){
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
+
 
 Route::resource('pelanggan', PelangganController::class);
 
 Route::resource('produk', ProdukController::class);
+
+Route::resource('penjualan', PenjualanController::class);
